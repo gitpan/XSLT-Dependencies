@@ -1,7 +1,7 @@
 package XSLT::Dependencies;
 
 use vars qw ($VERSION);
-$VERSION = '0.1';
+$VERSION = '0.2';
 
 use strict;
 use XML::LibXML;
@@ -24,6 +24,7 @@ sub explore {
     my ($this, $filename) = @_;
 
     $this->{start} = realpath($filename);
+    $this->{inc} = {};
     $this->dep_list($this->{start});
     
     return grep {$_ ne $this->{start}} keys %{$this->{inc}};
@@ -97,7 +98,7 @@ in the result. The list is not sorted in any way.
 
 =head1 RANDOM THOUGHTS
 
-Note that version 0.1 does not follow any non-standard namespace scheme except
+Note that version 0.2 does not follow any non-standard namespace scheme except
 C<xsl:>.
 
 The idea behind XSLT::Dependencies was to find all the files that are used to
